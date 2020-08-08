@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { makeStyles, Paper, InputBase, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import axiosClient from 'api/axiosClient';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,11 +35,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function View() {
   const classes = useStyles();
-  const input = '# This is a header\n\nAnd this is a paragraph';
   const [blogUrl, setBlogUrl] = useState('');
+  const [input, setInput] = useState(
+    '# What will you read today ? \n\nWant to know the mysteries surrounding the Mona Lisa painting?'
+  );
 
-  const handleSearch = () => {
-    console.log(blogUrl);
+  const handleSearch = async () => {
+    var response = await axiosClient.get(blogUrl);
+    response = response.substr(0, 12) + response.substr(44);
+    console.log(response);
+    var tmp = document.createElement('DIV');
+    tmp.innerHTML = response;
+    setInput(tmp.textContent);
     setBlogUrl('');
   };
 
