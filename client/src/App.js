@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { makeStyles, Grid, Paper, Container } from '@material-ui/core';
-import ReactMarkdown from 'react-markdown';
-import SimpleMDE from 'react-simplemde-editor';
+import React from 'react';
+import { makeStyles, Container } from '@material-ui/core';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Header from './components/Header';
+
+import Post from 'views/Post';
+import View from 'views/View';
 
 import 'easymde/dist/easymde.min.css';
 import './App.css';
@@ -9,45 +12,34 @@ import './App.css';
 const useStyles = makeStyles((theme) => ({
   paper: {
     height: '100vh',
-  },
-  center: {
-    display: 'flex',
-    alignItems: 'center',
+    position: 'relative',
   },
   ch: {
     height: '100%',
   },
-  pt: {
-    padding: '5px 15px',
-  },
-  sc: {
-    overflow: 'auto',
+  header: {
+    position: 'absolute',
+    width: '100%',
   },
 }));
 
 function App() {
   const classes = useStyles();
-  const [handleChange, setHandleChange] = useState('');
 
   return (
-    <Container className={classes.paper}>
-      <div className={`${classes.center} ${classes.ch}`}>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Paper className={`${classes.ch} ${classes.sc}`} elevation={3}>
-              <SimpleMDE onChange={setHandleChange} />
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper className={`${classes.ch} ${classes.sc}`} elevation={3}>
-              <div className={classes.pt}>
-                <ReactMarkdown source={handleChange} />
-              </div>
-            </Paper>
-          </Grid>
-        </Grid>
+    <BrowserRouter>
+      <div className={classes.paper}>
+        <div className={classes.header}>
+          <Header />
+        </div>
+        <Container className={classes.ch}>
+          <Switch>
+            <Route exact path='/' component={Post} />
+            <Route exact path='/view' component={View} />
+          </Switch>
+        </Container>
       </div>
-    </Container>
+    </BrowserRouter>
   );
 }
 
