@@ -1,25 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { makeStyles, Grid, Paper, Container } from '@material-ui/core';
+import ReactMarkdown from 'react-markdown';
+import SimpleMDE from 'react-simplemde-editor';
+
+import 'easymde/dist/easymde.min.css';
 import './App.css';
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    height: '100vh',
+  },
+  center: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  ch: {
+    height: '100%',
+  },
+  pt: {
+    padding: '5px 15px',
+  },
+  sc: {
+    overflow: 'auto',
+  },
+}));
+
 function App() {
+  const classes = useStyles();
+  const [handleChange, setHandleChange] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className={classes.paper}>
+      <div className={`${classes.center} ${classes.ch}`}>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <Paper className={`${classes.ch} ${classes.sc}`} elevation={3}>
+              <SimpleMDE onChange={setHandleChange} />
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={`${classes.ch} ${classes.sc}`} elevation={3}>
+              <div className={classes.pt}>
+                <ReactMarkdown source={handleChange} />
+              </div>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+    </Container>
   );
 }
 
