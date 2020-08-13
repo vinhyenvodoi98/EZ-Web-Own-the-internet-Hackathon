@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use('/', route);
 
 app.listen(4000, (err) => {
-  console.log('Server is running !!!');
+  console.log('Server is running in port 4000 !!!');
 });
 
 module.exports = app;
