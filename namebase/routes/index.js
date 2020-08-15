@@ -1,9 +1,10 @@
 const { api } = require('../helper');
 const router = require('express').Router();
+require('dotenv').config();
 
 router.get('/connecting', async (req, res) => {
   try {
-    const response = await api('GET', '/api/v0/dns/domains/dkoi', null);
+    const response = await api('GET', `/api/v0/dns/domains/${process.env.DOMAIN}`, null);
     res.status(200).json({
       response
     });
@@ -17,9 +18,8 @@ router.get('/connecting', async (req, res) => {
 router.post('/upload', async (req, res) => {
   try {
     const skylink = req.body.skylink;
-    console.log(skylink);
     var body = `{"records": [{ "type": "TXT", "host": "", "value":"${skylink}","ttl": 0 }] }`;
-    const response = await api('PUT', '/api/v0/dns/domains/dkoi', body);
+    const response = await api('PUT', `/api/v0/dns/domains/${process.env.DOMAIN}`, body);
     res.status(200).json({
       response
     });
