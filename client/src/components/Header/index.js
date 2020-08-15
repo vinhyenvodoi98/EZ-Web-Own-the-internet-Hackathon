@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     height: '40px',
   },
   bl: {
-    width: '100px',
+    width: '120px',
     borderRadius: '0px',
   },
   rmd: {
@@ -39,7 +39,7 @@ export default function Header() {
           </Link>
           <Link to='/view' className={classes.rmd}>
             <Button className={classes.bl} color='inherit'>
-              <h3>View</h3>
+              <h3>TownSquare</h3>
             </Button>
           </Link>
         </Toolbar>

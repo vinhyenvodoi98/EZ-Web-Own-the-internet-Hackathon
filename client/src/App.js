@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   ch: {
-    height: '100%',
+    minHeight: '85vh',
   },
   header: {
     position: 'absolute',

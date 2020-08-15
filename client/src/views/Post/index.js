@@ -3,11 +3,11 @@ import { makeStyles, Grid, Paper, Button, InputBase } from '@material-ui/core';
 import ReactMarkdown from 'react-markdown';
 import SimpleMDE from 'react-simplemde-editor';
 import { Remarkable } from 'remarkable';
+import axiosClient from 'api/axiosClient';
 
 const useStyles = makeStyles((theme) => ({
   center: {
-    display: 'flex',
-    alignItems: 'center',
+    paddingTop: '15vh',
   },
   pt: {
     padding: '5px 15px',
@@ -70,6 +70,51 @@ export default function Post() {
       .catch((e) => console.log(e));
   };
 
+  const generateJson = async () => {
+    if (title && url) {
+      const dataUrl = 'https://siasky.net/hns/eatingonadime';
+      try {
+        const response = await axiosClient.get(dataUrl);
+        response.unshift({ name: title, skylink: url });
+        // push file
+        publicJson(response);
+      } catch (error) {
+        // If no you have recorded
+        var record = [{ name: title, skylink: url }];
+        //  push file
+        publicJson(record);
+      }
+    } else {
+      console.log('please write some thing');
+    }
+  };
+
+  const publicJson = (record) => {
+    const uuid = generateUUID();
+    fetch(`https://siasky.net/skynet/skyfile/${uuid}?filename=index.json`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(record),
+    })
+      .then((response) => response.json())
+      .then(async (result) => {
+        try {
+          const response = await axiosClient.post(
+            `${process.env.REACT_APP_SERVER_BASEURL}/upload`,
+            {
+              skylink: result.skylink,
+            }
+          );
+          console.log(response);
+        } catch (error) {
+          console.log(error);
+        }
+      })
+      .catch((e) => console.log(e));
+  };
+
   return (
     <div className={`${classes.center} ${classes.ch}`}>
       <Grid container spacing={3}>
@@ -96,11 +141,17 @@ export default function Post() {
             </div>
           </Paper>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={3}>
           <Button variant='outlined' color='primary' onClick={() => generateHTML()}>
             Generate Skynet Link
           </Button>
         </Grid>
+        <Grid item xs={4}>
+          <Button variant='outlined' style={{ color: 'black' }} onClick={() => generateJson()}>
+            Public to TownSquare
+          </Button>
+        </Grid>
+
         <Grid item xs={12}>
           {url ? (
             <a
