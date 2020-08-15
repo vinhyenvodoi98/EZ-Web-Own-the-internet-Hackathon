@@ -80,7 +80,7 @@ export default function Post() {
         publicJson(response);
       } catch (error) {
         // If no you have recorded
-        var record = [{ name: title, skylink: url }];
+        var record = [{ name: title, skylink: `https://siasky.net/${url}` }];
         //  push file
         publicJson(record);
       }
