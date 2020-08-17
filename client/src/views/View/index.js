@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 export default function View() {
   const classes = useStyles();
   const [blogUrl, setBlogUrl] = useState('');
-  const [input, setInput] = useState(
+  const [input] = useState(
     '# What will you read today ? \n\nWant to know the mysteries surrounding the Mona Lisa painting?'
   );
   const [datas, setDatas] = useState([]);
@@ -58,16 +58,6 @@ export default function View() {
     getData();
   }, []);
 
-  const handleSearch = async () => {
-    var response = await axiosClient.get(blogUrl);
-    response = response.substr(0, 12) + response.substr(44);
-    console.log(response);
-    var tmp = document.createElement('DIV');
-    tmp.innerHTML = response;
-    setInput(tmp.textContent);
-    setBlogUrl('');
-  };
-
   return (
     <div className={classes.root}>
       <Paper className={`${classes.bt} ${classes.mgb}`} elevation={3}>
@@ -78,11 +68,7 @@ export default function View() {
           value={blogUrl}
           onChange={(event) => setBlogUrl(event.target.value)}
         />
-        <IconButton
-          onClick={() => handleSearch()}
-          className={classes.iconButton}
-          aria-label='search'
-        >
+        <IconButton className={classes.iconButton} aria-label='search'>
           <SearchIcon />
         </IconButton>
       </Paper>

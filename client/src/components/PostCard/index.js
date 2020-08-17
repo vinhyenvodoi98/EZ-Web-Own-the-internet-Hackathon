@@ -23,7 +23,7 @@ export default function PostCard({ data }) {
       <Paper elevation={3}>
         <Grid container>
           <Grid item xs={1} className={classes.center}>
-            <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
+            <Avatar>{data.name[0]}</Avatar>
           </Grid>
           <Grid item xs={11}>
             <h1 className={classes.pt}>{data.name}</h1>
