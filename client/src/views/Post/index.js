@@ -81,7 +81,7 @@ export default function Post() {
       const dataUrl = 'https://siasky.net/hns/eatingonadime';
       try {
         const response = await axiosClient.get(dataUrl);
-        response.unshift({ name: title, skylink: url });
+        response.unshift({ name: title, skylink: `https://siasky.net/${url}` });
         // push file
         publicJson(response);
       } catch (error) {
