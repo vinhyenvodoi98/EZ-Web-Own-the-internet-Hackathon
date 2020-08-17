@@ -73,7 +73,7 @@ export default function View() {
       <Paper className={`${classes.bt} ${classes.mgb}`} elevation={3}>
         <InputBase
           className={classes.input}
-          placeholder='Your blog url. Example : https://siasky.net/AAB1OOTWRLeI8hDqd0Hmke6jNRwulY57bQKsCcc_2P6_UQ'
+          placeholder='Wanna read about Skynet or Handshake ? Please search Skynet Handshake'
           inputProps={{ 'aria-label': 'search blog url' }}
           value={blogUrl}
           onChange={(event) => setBlogUrl(event.target.value)}

@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import SimpleMDE from 'react-simplemde-editor';
 import { Remarkable } from 'remarkable';
 import axiosClient from 'api/axiosClient';
+import Toastify from 'components/Toastify';
 
 const useStyles = makeStyles((theme) => ({
   center: {
@@ -35,6 +36,8 @@ export default function Post() {
   const [handleChange, setHandleChange] = useState('');
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
+  const [status, setStatus] = useState(0);
+  const [wantPublic, setPublic] = useState(false);
 
   const generateUUID = () => {
     let uuid = '';
@@ -66,7 +69,10 @@ export default function Post() {
       body: formData,
     })
       .then((response) => response.json())
-      .then((result) => setUrl(result.skylink))
+      .then((result) => {
+        setUrl(result.skylink);
+        setPublic(true);
+      })
       .catch((e) => console.log(e));
   };
 
@@ -101,15 +107,13 @@ export default function Post() {
       .then((response) => response.json())
       .then(async (result) => {
         try {
-          const response = await axiosClient.post(
-            `${process.env.REACT_APP_SERVER_BASEURL}/upload`,
-            {
-              skylink: result.skylink,
-            }
-          );
-          console.log(response);
+          await axiosClient.post(`${process.env.REACT_APP_SERVER_BASEURL}/upload`, {
+            skylink: result.skylink,
+          });
+          setStatus(1);
         } catch (error) {
           console.log(error);
+          setStatus(2);
         }
       })
       .catch((e) => console.log(e));
@@ -117,6 +121,14 @@ export default function Post() {
 
   return (
     <div className={`${classes.center} ${classes.ch}`}>
+      {status === 1 ? (
+        <Toastify status={status} message='Public successfully' />
+      ) : status === 2 ? (
+        <Toastify status={status} message='Something wrong' />
+      ) : (
+        <></>
+      )}
+
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.bt} elevation={3}>
@@ -146,11 +158,15 @@ export default function Post() {
             Generate Skynet Link
           </Button>
         </Grid>
-        <Grid item xs={4}>
-          <Button variant='outlined' style={{ color: 'black' }} onClick={() => generateJson()}>
-            Public to TownSquare
-          </Button>
-        </Grid>
+        {wantPublic ? (
+          <Grid item xs={4}>
+            <Button variant='outlined' style={{ color: 'black' }} onClick={() => generateJson()}>
+              Public to TownSquare
+            </Button>
+          </Grid>
+        ) : (
+          <></>
+        )}
 
         <Grid item xs={12}>
           {url ? (
