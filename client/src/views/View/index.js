@@ -46,7 +46,7 @@ export default function View() {
 
   useEffect(() => {
     const getData = async () => {
-      const dataUrl = 'https://siasky.net/hns/eatingonadime';
+      const dataUrl = `https://siasky.net/hns/${process.env.REACT_APP_DOMAIN}`;
       try {
         const response = await axiosClient.get(dataUrl);
         setDatas(response);

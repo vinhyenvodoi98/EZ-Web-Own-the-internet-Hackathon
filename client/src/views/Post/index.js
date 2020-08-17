@@ -78,7 +78,7 @@ export default function Post() {
 
   const generateJson = async () => {
     if (title && url) {
-      const dataUrl = 'https://siasky.net/hns/eatingonadime';
+      const dataUrl = `https://siasky.net/hns/${process.env.REACT_APP_DOMAIN}`;
       try {
         const response = await axiosClient.get(dataUrl);
         response.unshift({ name: title, skylink: `https://siasky.net/${url}` });
