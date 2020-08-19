@@ -1,0 +1,1 @@
+web: cd namebase && node app.js

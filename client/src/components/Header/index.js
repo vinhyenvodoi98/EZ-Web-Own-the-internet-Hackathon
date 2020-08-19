@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, AppBar, Toolbar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import ez from 'assets/ez.png';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -30,7 +29,7 @@ export default function Header() {
     <div className={classes.root}>
       <AppBar color='transparent' position='static'>
         <Toolbar>
-          <img className={classes.logo} src={ez} alt='logo' />
+          <img className={classes.logo} src="https://i.imgur.com/uk28IEx.png" alt='logo' />
 
           <Link to='/' className={classes.rmd}>
             <Button className={classes.bl} color='inherit'>

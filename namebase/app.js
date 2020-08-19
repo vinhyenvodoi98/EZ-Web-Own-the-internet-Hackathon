@@ -1,3 +1,4 @@
+var PORT = process.env.PORT || 4000;
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -28,7 +29,7 @@ app.use(cookieParser());
 // Route
 app.use('/', route);
 
-app.listen(4000, (err) => {
+app.listen(PORT, (err) => {
   console.log('Server is running in port 4000 !!!');
 });
 

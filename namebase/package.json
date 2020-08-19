@@ -5,13 +5,16 @@
   "main": "namebaseApi.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon app.js",
-    "start:production": "node app.js"
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nebulous/skynet": "^1.1.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
