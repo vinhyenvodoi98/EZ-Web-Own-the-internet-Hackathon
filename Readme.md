@@ -14,6 +14,12 @@ https://github.com/vinhyenvodoi98/siasky-hosting
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/aGWhgPRu0Mw/0.jpg)](https://youtu.be/aGWhgPRu0Mw)
 
+# Live on
+Try my app in :
+
+https://siasky.net/_BXLqJ3l7YYOcpGNcf0Nh7FRX0Mk5WElaN4FPHoqne8UEw
+
+Note because of route dom so please click to Post in navbar to try. Enjoy it !
 # EzBlog
 This demo includes 2 parts:
 
