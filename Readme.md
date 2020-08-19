@@ -2,6 +2,14 @@
 
 ![alt](https://github.com/vinhyenvodoi98/EZ-Web-Own-the-internet-Hackathon/blob/master/images/home.png)
 
+# NOTE
+
+I've completed another project and want to submit it. So check it out :metal:
+
+:point_right: Submission # 2 :
+
+https://github.com/vinhyenvodoi98/siasky-hosting
+
 # Video demo
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/aGWhgPRu0Mw/0.jpg)](https://youtu.be/aGWhgPRu0Mw)
