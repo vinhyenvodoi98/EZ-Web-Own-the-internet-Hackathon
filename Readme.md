@@ -17,7 +17,7 @@ https://github.com/vinhyenvodoi98/siasky-hosting
 # Live on
 Try my app in :
 
-https://siasky.net/_BXLqJ3l7YYOcpGNcf0Nh7FRX0Mk5WElaN4FPHoqne8UEw
+https://siasky.net/_BUIFL2I2kXa6pcQiwAU80a7zp_rbTzSNxplCJIK3qJKxA
 
 Note because of route dom so please click to Post in navbar to try. Enjoy it !
 # EzBlog

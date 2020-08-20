@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, Container } from '@material-ui/core';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 
 import Post from 'views/Post';
@@ -27,7 +27,7 @@ function App() {
   const classes = useStyles();
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className={classes.paper}>
         <div className={classes.header}>
           <Header />
@@ -39,7 +39,7 @@ function App() {
           </Switch>
         </Container>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
